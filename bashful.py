@@ -77,7 +77,7 @@ class Pipeline:
 
     def __repr__(self) -> str:
         return str(self)
-    
+
     def __str__(self) -> str:
         return f"{self._lhs} | {self._rhs}"
 
@@ -88,7 +88,7 @@ def _ensure_bytes(s: Optional[AnyStr]) -> Optional[bytes]:
 
     if isinstance(s, bytes):
         return s
-    
+
     return s.encode("utf-8")
 
 
@@ -97,6 +97,7 @@ def bash(*args, **kwargs):
         *args,
         **kwargs,
     )
+
 
 def pipeline(*args: Iterable[str], **kwargs):
     procs = [bash(*arg, **kwargs) for arg in args]
@@ -113,9 +114,6 @@ def pipeline(*args: Iterable[str], **kwargs):
 
 
 if __name__ == "__main__":
-    pipeline = (
-        bash("ls", "-la", "/etc")
-        | bash("grep", "rc")
-        | bash("sed", "s/rc$//"))
+    pipeline = bash("ls", "-la", "/etc") | bash("grep", "rc") | bash("sed", "s/rc$//")
     proc = pipeline()
     print(f"{proc.stdout.decode('unicode_escape')}")
