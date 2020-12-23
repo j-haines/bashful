@@ -8,7 +8,7 @@ Only tested with Python 3.8.
 
 ### Single bash command
 
-```lang=python
+```python
 In [1]: from bashful import bash
 
 In [2]: ls = bash("ls", "-a", "/etc/systemd")
@@ -30,7 +30,7 @@ user.conf
 
 ### Piping multiple bash commands
 
-```lang=python
+```python
 In [1]: from bashful import bash
 
 In [2]: pipelined = bash("ls", "/var/log") | bash("wc", "-l")
@@ -43,7 +43,7 @@ In [4]: print(proc.stdout.decode("utf-8"))
 
 ### ... or as a single function call
 
-```lang=python
+```python
 In [1]: from bashful import pipeline
 
 In [2]: pipelined = pipeline(["ls", "/var/log"], ["wc", "-l"])
@@ -56,7 +56,7 @@ In [4]: print(proc.stdout.decode("utf-8"))
 
 ### Passing input to commands
 
-```lang=python
+```python
 In [1]: from bashful import bash
 
 In [2]: wc = bash("wc", "-c")
